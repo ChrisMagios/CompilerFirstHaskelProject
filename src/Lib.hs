@@ -16,14 +16,17 @@ square a = a * a
 
 -- / Get the ggT from to Integers
 ggT :: Integer -> Integer -> Integer
+ggT 0 b = b
+ggT a 0 = a
 ggT a b = do
+
   if a >= b
     then do
-      let x = (a `mod` b)
+      let x = (a `rem` b)
       if x == 0
         then b
         else ggT b x
-    else ggT b a
+  else ggT b a
 
 extractIntegers :: Read a => String -> [a]
 extractIntegers = map read . words
